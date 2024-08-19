@@ -29,13 +29,13 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/", "/home").permitAll()
+                                .requestMatchers("/", "/register", "/login").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(formLogin ->
                         formLogin
                                 .loginPage("/login")
-                                .defaultSuccessUrl("/dashboard", true)
+                                .defaultSuccessUrl("/", true)
                                 .permitAll()
                 )
                 .logout(logout ->
