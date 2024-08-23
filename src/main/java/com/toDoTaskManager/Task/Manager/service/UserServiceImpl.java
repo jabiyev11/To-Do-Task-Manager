@@ -1,6 +1,7 @@
 package com.toDoTaskManager.Task.Manager.service;
 
 import com.toDoTaskManager.Task.Manager.entity.Role;
+import com.toDoTaskManager.Task.Manager.entity.Task;
 import com.toDoTaskManager.Task.Manager.entity.User;
 import com.toDoTaskManager.Task.Manager.repository.RoleRepository;
 import com.toDoTaskManager.Task.Manager.repository.UserRepository;
@@ -43,4 +44,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
     }
+
+
 }

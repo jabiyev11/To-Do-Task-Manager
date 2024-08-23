@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Form</title>
+<!--    <link rel="stylesheet" href="/static/taskForm.css"> &lt;!&ndash; Link to your external CSS file &ndash;&gt;-->
+</head>
+<body>
+<div class="task-form-container">
+    <h2 th:text="${task.id != null} ? 'Edit Task' : 'Create New Task'"></h2> <!-- Dynamic title based on task presence -->
+
+    <!-- Task Form -->
+    <form th:action="@{/tasks}" th:object="${task}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <!-- Task Title -->
+        <div class="form-outline">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" id="title" name="title" class="form-control" th:field="*{title}" required />
+        </div>
+
+        <!-- Task Description -->
+        <div class="form-outline">
+            <label for="description" class="form-label">Description</label>
+            <textarea id="description" name="description" class="form-control" th:field="*{description}" required></textarea>
+        </div>
+
+        <!-- Task Status -->
+        <div class="form-outline">
+            <label for="status" class="form-label">Status</label>
+            <select id="status" name="status" class="form-control" th:field="*{status}" required>
+                <option value="NOT_STARTED">Not Started</option>
+                <option value="IN_PROGRESS">In Progress</option>
+                <option value="COMPLETED">Completed</option>
+            </select>
+        </div>
+
+        <!-- Task Priority -->
+        <div class="form-outline">
+            <label for="priority" class="form-label">Priority</label>
+            <select id="priority" name="priority" class="form-control" th:field="*{priority}" required>
+                <option value="LOW">Low</option>
+                <option value="MEDIUM">Medium</option>
+                <option value="HIGH">High</option>
+            </select>
+        </div>
+
+        <!-- Task Due Date -->
+        <div class="form-outline">
+            <label for="dueDate" class="form-label">Due Date</label>
+            <input type="date" id="dueDate" name="dueDate" class="form-control" th:field="*{dueDate}" required />
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary" th:text="${task.id != null} ? 'Update Task' : 'Create Task'"></button>
+    </form>
+
+    <!-- Back to Task List -->
+    <div class="text-center">
+        <a href="/tasks" class="btn btn-secondary">Back to Task List</a>
+    </div>
+</div>
+</body>
+</html>

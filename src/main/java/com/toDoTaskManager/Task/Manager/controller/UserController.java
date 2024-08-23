@@ -41,6 +41,6 @@ public class UserController {
 
     @GetMapping("/")
     public String home() {
-        return "index";
+        return "redirect:/tasks";
     }
 }
