@@ -1,8 +1,13 @@
 package com.toDoTaskManager.Task.Manager.service;
 
 import com.toDoTaskManager.Task.Manager.entity.Task;
+import com.toDoTaskManager.Task.Manager.entity.User;
 import com.toDoTaskManager.Task.Manager.repository.TaskRepository;
+import com.toDoTaskManager.Task.Manager.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,19 +16,25 @@ import java.util.List;
 public class TaskServiceImpl implements TaskService {
 
     private TaskRepository taskRepository;
+    private UserRepository userRepository;
+    private UserServiceImpl userService;
+
 
     @Autowired
-    public TaskServiceImpl(TaskRepository taskRepository) {
+    public TaskServiceImpl(TaskRepository taskRepository, UserRepository userRepository, UserServiceImpl userService) {
         this.taskRepository = taskRepository;
+        this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     @Override
-    public List<Task> getAllTasks() {
-        return taskRepository.findAll();
+    public List<Task> getTasksByUser() {
+        return taskRepository.findByUser(userService.getCurrentUser());
     }
 
     @Override
     public Task saveTask(Task task) {
+        task.setUser(userService.getCurrentUser());
         return taskRepository.save(task);
     }
 
