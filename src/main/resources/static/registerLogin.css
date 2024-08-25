@@ -73,3 +73,9 @@ body {
     text-align: center;
     margin-top: 1rem;
 }
+
+.error-alert{
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
