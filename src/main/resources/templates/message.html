@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Message</title>
+</head>
+<body>
+<h1 th:text="${message}"></h1>
+<p th:if="${status == 'info'}">Please check your email for further instructions.</p>
+<p th:if="${status == 'success'}">You can now <a href="/login">log in</a>.</p>
+<p th:if="${status == 'error'}">Please <a href="/register">try again</a>.</p>
+</body>
+</html>

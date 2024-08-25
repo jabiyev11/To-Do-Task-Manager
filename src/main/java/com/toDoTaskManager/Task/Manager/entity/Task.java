@@ -3,9 +3,7 @@ package com.toDoTaskManager.Task.Manager.entity;
 import com.toDoTaskManager.Task.Manager.enums.TaskPriority;
 import com.toDoTaskManager.Task.Manager.enums.TaskStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -14,6 +12,8 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(of = "id")
+@ToString(exclude = "user")
 public class Task {
 
     @Id

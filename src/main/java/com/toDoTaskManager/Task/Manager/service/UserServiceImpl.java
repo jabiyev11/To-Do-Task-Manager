@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void registerUser(User user) {
+    public User registerUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         Role userRole = roleRepository.findByName("User");
@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
             roleRepository.save(userRole);
         }
         user.setRole(userRole);
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
     @Override
