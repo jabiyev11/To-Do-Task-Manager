@@ -2,7 +2,7 @@ package com.toDoTaskManager.Task.Manager.enums;
 
 public enum TaskStatus {
 
-    NOT_STARTED,
+    TO_DO,
     IN_PROGRESS,
     COMPLETED
 }
