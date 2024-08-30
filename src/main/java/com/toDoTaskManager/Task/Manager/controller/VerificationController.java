@@ -36,12 +36,14 @@ public class VerificationController {
             userRepository.save(user);
             model.addAttribute("message", "Email verified successfully, You can now Log In");
             model.addAttribute("status", "success");
+            System.out.println("Verified");
         } else {
             model.addAttribute("message", "Invalid or expired token");
             model.addAttribute("status", "error");
+            System.out.println("Not Verified");
         }
 
-        return "message";
+        return "messageForUser";
     }
 
 }

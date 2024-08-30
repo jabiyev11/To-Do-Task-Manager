@@ -53,7 +53,7 @@ public class UserController {
         model.addAttribute("message", "Registration successful! Please check your email to verify your account");
         model.addAttribute("status", "info");
 
-        return "redirect:/verify";
+        return "messageForUser";
     }
 
     @GetMapping("/login")
