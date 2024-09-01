@@ -1,6 +1,7 @@
 package com.toDoTaskManager.Task.Manager.service;
 
 import com.toDoTaskManager.Task.Manager.entity.User;
+import com.toDoTaskManager.Task.Manager.exceptions.EmailNotConfirmedException;
 import com.toDoTaskManager.Task.Manager.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authorization.method.AuthorizeReturnObject;
@@ -27,6 +28,10 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User appUser = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with " + username + " username"));
+
+        if(!appUser.isConfirmed()){
+            throw new EmailNotConfirmedException("Email not confirmed for " + username);
+        }
 
 
         String role = appUser.getRole().getName();

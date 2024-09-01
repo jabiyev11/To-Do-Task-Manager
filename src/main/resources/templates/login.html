@@ -30,6 +30,10 @@
     <div class="text-center">
         <p>Don't have an account? <a href="/register">Create one</a></p>
     </div>
+
+    <div th:if="${param.error}">
+        <p class="not-confirmed-error">Your email not confirmed. Please check your email.</p>
+    </div>
 </div>
 </body>
 </html>

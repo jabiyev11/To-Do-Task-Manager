@@ -79,3 +79,7 @@ body {
     font-size: 12px;
     margin-top: 5px;
 }
+
+.not-confirmed-error{
+    color: red;
+}

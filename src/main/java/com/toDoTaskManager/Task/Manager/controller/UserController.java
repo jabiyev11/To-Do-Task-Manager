@@ -2,6 +2,7 @@ package com.toDoTaskManager.Task.Manager.controller;
 
 
 import com.toDoTaskManager.Task.Manager.entity.User;
+import com.toDoTaskManager.Task.Manager.exceptions.UserAlreadyExistsException;
 import com.toDoTaskManager.Task.Manager.service.EmailService;
 import com.toDoTaskManager.Task.Manager.service.UserServiceImpl;
 import jakarta.validation.Valid;
@@ -47,13 +48,19 @@ public class UserController {
             return "register";
         }
 
-        User savedUser = userService.registerUser(user);
-        emailService.sendVerificationEmail(savedUser);
+        try {
+            User savedUser = userService.registerUser(user);
+            emailService.sendVerificationEmail(savedUser);
 
-        model.addAttribute("message", "Registration successful! Please check your email to verify your account");
-        model.addAttribute("status", "info");
+            model.addAttribute("message", "Registration successful! Please check your email to verify your account");
+            model.addAttribute("status", "info");
 
-        return "messageForUser";
+            return "messageForUser";
+        } catch (UserAlreadyExistsException e) {
+            model.addAttribute("message", e.getMessage());
+            model.addAttribute("status", "warning");
+            return "messageForUser";
+        }
     }
 
     @GetMapping("/login")

@@ -4,8 +4,6 @@ import com.toDoTaskManager.Task.Manager.entity.Task;
 import com.toDoTaskManager.Task.Manager.service.TaskServiceImpl;
 import com.toDoTaskManager.Task.Manager.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +27,7 @@ public class TaskController {
     public String getAllTasks(Model model) {
         List<Task> tasks = taskService.getTasksByUser();
         model.addAttribute("tasks", tasks);
-        return "tasks";
+        return "taskList";
     }
 
     @GetMapping("/new")

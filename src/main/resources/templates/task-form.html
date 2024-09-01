@@ -3,19 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Task Form</title>
-<!--    <link rel="stylesheet" href="/static/taskForm.css"> &lt;!&ndash; Link to your external CSS file &ndash;&gt;-->
+    <link rel="stylesheet" href="/static/tasks.css"> <!-- Link to your external CSS file -->
 </head>
 <body>
 <div class="task-form-container">
     <h2 th:text="${task.id != null} ? 'Edit Task' : 'Create New Task'"></h2> <!-- Dynamic title based on task presence -->
 
-<!--    Display Validation Errors-->
-
-<!--    <div th:if="${#fields.hasErrors()}" class="alert alert-danger">-->
-<!--        <ul>-->
-<!--            <li th:each="error : ${#fields.errors()}" th:text="${error}"></li>-->
-<!--        </ul>-->
-<!--    </div>-->
     <!-- Task Form -->
     <form th:action="@{/tasks}" th:object="${task}" method="post">
         <input type="hidden" th:field="*{id}">
@@ -23,14 +16,12 @@
         <div class="form-outline">
             <label for="title" class="form-label">Title</label>
             <input type="text" id="title" name="title" class="form-control" th:field="*{title}" required />
-<!--            <div th:if="${#fields.hasErrors('title')}" class="text-danger" th:errors="*{title}"></div>-->
         </div>
 
         <!-- Task Description -->
         <div class="form-outline">
             <label for="description" class="form-label">Description</label>
             <textarea id="description" name="description" class="form-control" th:field="*{description}" required></textarea>
-<!--            <div th:if="${#fields.hasErrors('decription')}" class="text-danger" th:errors="*{description}"></div>-->
 
         </div>
 
@@ -42,7 +33,6 @@
                 <option value="IN_PROGRESS">In Progress</option>
                 <option value="COMPLETED">Completed</option>
             </select>
-<!--            <div th:if="${#fields.hasErrors('status')}" class="text-danger" th:errors="*{status}"></div>-->
         </div>
 
         <!-- Task Priority -->
@@ -53,14 +43,12 @@
                 <option value="MEDIUM">Medium</option>
                 <option value="HIGH">High</option>
             </select>
-<!--            <div th:if="${#fields.hasErrors('priority')}" class="text-danger" th:errors="*{priority}"></div>-->
         </div>
 
         <!-- Task Due Date -->
         <div class="form-outline">
             <label for="dueDate" class="form-label">Due Date</label>
             <input type="date" id="dueDate" name="dueDate" class="form-control" th:field="*{dueDate}" required />
-<!--            <div th:if="${#fields.hasErrors('dueDate')}" class="text-danger" th:errors="*{dueDate}"></div>-->
         </div>
 
         <!-- Submit button -->
