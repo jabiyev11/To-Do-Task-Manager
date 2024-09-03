@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Information</title>
+</head>
+<body>
+
+        <h1>Weather Information</h1>
+        <form th:action="@{weather}" method="get">
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required>
+            <button type="submit">Get Weather</button>
+        </form>
+
+
+        <div th:if="${weather}">
+            <h2>Weather in <span th:text="${weather.cityName}"></span>, <span th:text="${weather.countryName}"></span></h2>
+            <p><strong>Description:</strong> <span th:text="${weather.weatherDescription}"></span></p>
+            <p><strong>Temperature:</strong> <span th:text="${weather.temperature}"></span> °C</p>
+            <p><strong>Humidity:</strong> <span th:text="${weather.humidity}"></span> %</p>
+            <p><strong>Wind Speed:</strong> <span th:text="${weather.windSpeed}"></span> m/s</p>
+            <img th:src="'http://openweathermap.org/img/wn/' + ${weather.icon} + '@2x.png'" alt="Weather icon"/>
+        </div>
+
+
+        <div th:if="${error}">
+            <p th:text="${error}"></p>
+        </div>
+</body>
+</html>

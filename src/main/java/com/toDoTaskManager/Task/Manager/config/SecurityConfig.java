@@ -39,7 +39,7 @@ public class SecurityConfig {
                         formLogin
                                 .loginPage("/login")
                                 .defaultSuccessUrl("/tasks", true)
-                                .failureHandler(authenticationFailureHandler())
+                                .failureHandler(customAuthenticationFailureHandler())
                                 .permitAll()
                 )
                 .logout(logout ->
@@ -65,6 +65,11 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public CustomAuthenticationFailureHandler customAuthenticationFailureHandler(){
+        return new CustomAuthenticationFailureHandler();
     }
 
 }

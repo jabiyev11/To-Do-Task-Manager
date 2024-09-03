@@ -31,8 +31,8 @@
         <p>Don't have an account? <a href="/register">Create one</a></p>
     </div>
 
-    <div th:if="${param.error}">
-        <p class="not-confirmed-error">Your email not confirmed. Please check your email.</p>
+    <div >
+        <p th:if="${param.error}" class="error-alert">Invalid username or password</p>
     </div>
 </div>
 </body>

@@ -76,8 +76,9 @@ body {
 
 .error-alert{
     color: red;
-    font-size: 12px;
+    font-size: 18px;
     margin-top: 5px;
+    text-align: center;
 }
 
 .not-confirmed-error{
