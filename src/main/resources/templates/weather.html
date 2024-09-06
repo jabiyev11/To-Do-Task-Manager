@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Weather Information</title>
+    <link rel="stylesheet" href="/static/weather.css">
 </head>
 <body>
 
-        <h1>Weather Information</h1>
+
+        <h1 class="header-text">Weather Information</h1>
+
         <form th:action="@{weather}" method="get">
-            <label for="city">City:</label>
-            <input type="text" id="city" name="city" required>
+            <label for="city">Enter City Name:</label>
+            <input type="text" id="city" name="city" placeholder="Enter City" required>
             <button type="submit">Get Weather</button>
         </form>
 
 
-        <div th:if="${weather}">
+        <div th:if="${weather}" class="weather-info">
             <h2>Weather in <span th:text="${weather.cityName}"></span>, <span th:text="${weather.countryName}"></span></h2>
             <p><strong>Description:</strong> <span th:text="${weather.weatherDescription}"></span></p>
             <p><strong>Temperature:</strong> <span th:text="${weather.temperature}"></span> °C</p>
@@ -24,7 +27,7 @@
         </div>
 
 
-        <div th:if="${error}">
+        <div th:if="${error}" class="error-message">
             <p th:text="${error}"></p>
         </div>
 </body>

@@ -2,6 +2,7 @@ package com.toDoTaskManager.Task.Manager.service;
 
 import com.toDoTaskManager.Task.Manager.entity.Task;
 import com.toDoTaskManager.Task.Manager.entity.User;
+import com.toDoTaskManager.Task.Manager.exceptions.DueDateCannotBeInThePastException;
 import com.toDoTaskManager.Task.Manager.repository.TaskRepository;
 import com.toDoTaskManager.Task.Manager.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -35,6 +37,10 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void saveTask(Task task) {
         task.setUser(userService.getCurrentUser());
+
+        if(task.getDueDate().isBefore(LocalDate.now())){
+            throw new DueDateCannotBeInThePastException("Specified due date cannot be before the current date");
+        }
         taskRepository.save(task);
     }
 

@@ -139,3 +139,12 @@ a:hover {
     text-align: center;
 }
 
+.error-alert{
+    color: red;
+    font-size: 18px;
+    margin-top: 5px;
+    text-align: center;
+}
+
+
+

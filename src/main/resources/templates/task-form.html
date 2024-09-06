@@ -51,6 +51,11 @@
             <input type="date" id="dueDate" name="dueDate" class="form-control" th:field="*{dueDate}" required />
         </div>
 
+
+        <div th:if="${status == 'error'}" class="error-alert">
+            <p th:text="${message}"></p>
+        </div>
+
         <!-- Submit button -->
         <button type="submit" class="btn btn-primary" th:text="${task.id != null} ? 'Update Task' : 'Create Task'"></button>
     </form>
