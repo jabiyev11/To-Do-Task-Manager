@@ -11,11 +11,11 @@
 <table>
     <thead>
     <tr>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Status</th>
-        <th>Priority</th>
-        <th>Due Date</th>
+        <th><a th:href="@{/tasks(sortBy='title', sortDirection=${sortDirection == 'ASC' ? 'DESC' : 'ASC'})}">Title</a></th>
+        <th><a th:href="@{/tasks(sortBy='description', sortDirection=${sortDirection == 'ASC' ? 'DESC' : 'ASC'})}">Description</a></th>
+        <th><a th:href="@{/tasks(sortBy='status', sortDirection=${sortDirection == 'ASC' ? 'DESC' : 'ASC'})}">Status</a></th>
+        <th><a th:href="@{/tasks(sortBy='priority', sortDirection=${sortDirection == 'ASC' ? 'DESC' : 'ASC'})}">Priority</a></th>
+        <th><a th:href="@{/tasks(sortBy='dueDate', sortDirection=${sortDirection == 'ASC' ? 'DESC' : 'ASC'})}">Due Date</a></th>
         <th>Actions</th>
     </tr>
     </thead>

@@ -6,6 +6,7 @@ import com.toDoTaskManager.Task.Manager.exceptions.DueDateCannotBeInThePastExcep
 import com.toDoTaskManager.Task.Manager.repository.TaskRepository;
 import com.toDoTaskManager.Task.Manager.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -30,11 +31,6 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> getTasksByUser() {
-        return taskRepository.findByUser(userService.getCurrentUser());
-    }
-
-    @Override
     public void saveTask(Task task) {
         task.setUser(userService.getCurrentUser());
 
@@ -54,4 +50,11 @@ public class TaskServiceImpl implements TaskService {
         return taskRepository.getTaskById(id);
     }
 
+    @Override
+    public List<Task> getSortedTasks(String sortBy, String sortDirection) {
+        User currentUser = userService.getCurrentUser();
+        Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
+
+        return taskRepository.findByUser(currentUser, sort);
+    }
 }

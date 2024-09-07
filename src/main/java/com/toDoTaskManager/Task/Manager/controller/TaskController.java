@@ -25,9 +25,14 @@ public class TaskController {
     }
 
     @GetMapping
-    public String getAllTasks(Model model) {
-        List<Task> tasks = taskService.getTasksByUser();
+    public String getAllTasks(@RequestParam(value = "sortBy", defaultValue = "dueDate") String sortBy,
+                              @RequestParam(value = "sortDirection", defaultValue = "ASC") String sortDirection,
+                              Model model) {
+
+        List<Task> tasks = taskService.getSortedTasks(sortBy, sortDirection);
         model.addAttribute("tasks", tasks);
+        model.addAttribute("sortBy", sortBy);
+        model.addAttribute("sortDirection", sortDirection);
         return "taskList";
     }
 
@@ -63,4 +68,5 @@ public class TaskController {
         taskService.deleteTask(id);
         return "redirect:/tasks";
     }
+
 }

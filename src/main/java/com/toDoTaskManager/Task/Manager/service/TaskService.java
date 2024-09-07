@@ -6,12 +6,11 @@ import java.util.List;
 
 public interface TaskService {
 
-    List<Task> getTasksByUser();
-
     void saveTask(Task task);
 
     void deleteTask(Long id);
 
     Task getTaskById(Long id);
 
+    List<Task> getSortedTasks(String sortBy, String sortDirection);
 }

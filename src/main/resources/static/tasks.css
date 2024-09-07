@@ -26,21 +26,28 @@ th, td {
 }
 
 th {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #4CAF50; /* Dark green */
+    color: #FFFFFF; /* White text */
+}
+
+th a {
+    color: #FFFFFF; /* White links in header for visibility */
+    text-decoration: none;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Subtle text shadow for better visibility */
 }
 
 tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #f9f9f9; /* Light gray for even rows */
 }
 
 tr:hover {
-    background-color: #ddd;
+    background-color: #f1f1f1; /* Slightly lighter gray on hover */
 }
 
 a {
     text-decoration: none;
-    color: #4CAF50;
+    color: #4CAF50; /* Dark green for other links */
     font-weight: bold;
 }
 
@@ -54,14 +61,14 @@ a:hover {
     margin: 20px auto;
     padding: 10px;
     text-align: center;
-    background-color: #4CAF50;
+    background-color: #4CAF50; /* Dark green */
     color: white;
     border-radius: 5px;
     text-decoration: none;
 }
 
 .add-task:hover {
-    background-color: #45a049;
+    background-color: #4CAF50; /* Slightly darker green on hover */
 }
 
 /* General container for the form */
@@ -105,7 +112,7 @@ a:hover {
     display: block;
     width: 100%;
     padding: 10px;
-    background-color: #4CAF50;
+    background-color: #4CAF50; /* Dark green */
     color: white;
     border: none;
     border-radius: 4px;
@@ -114,7 +121,7 @@ a:hover {
 }
 
 .btn-primary:hover {
-    background-color: #45a049;
+    background-color: #4CAF50; /* Slightly darker green on hover */
 }
 
 /* Back button styling */
@@ -139,12 +146,9 @@ a:hover {
     text-align: center;
 }
 
-.error-alert{
+.error-alert {
     color: red;
     font-size: 18px;
     margin-top: 5px;
     text-align: center;
 }
-
-
-
